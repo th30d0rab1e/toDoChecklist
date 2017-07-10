@@ -33,15 +33,18 @@ $(document).ready(function(){
     // We attached the entire book object as data to our table row
     // $(this).parent() is the <td>
     // $(this).parent().parent() is the <tr> that we attached our data to
-    //console.log($(this));
+    console.log($(this));
     var list = {};
     list.id = $(this).data('listid');
 
     console.log(list.id + ' id of checkbox ');
+    console.log($(this).is(':checked'));
     if($(this).is(':checked')){
       list.complete = true;
+      console.log('path went true ', list.complete);
     } else {
       list.complete = false;
+      console.log('path went false ', list.complete);
     }
     console.log("check ", list.complete);
      //$(selected).toggle(this.checked);
@@ -121,9 +124,9 @@ function appendToDom(lists) {
     $tr.append('<td>' + list.id + '</td>');
     $tr.append('<td>' + list.whattodo + '</td>');
     if(list.complete === true){
-      $tr.append('<td>' + '<input type="checkbox" data-listid"' + list.id + '"style="background-color: yellow;" class="checker" value="complete" checked>' + '</td>');
+      $tr.append('<td data-listid"' + list.id + '>' + '<input type="checkbox"'  + '"style="' + 'background-color: yellow;" class="checker" value="complete" checked>' + '</td>');
     } else {
-      $tr.append('<td>' + '<input type="checkbox"  data-listid="' + list.id + '"class="checker" value="complete">' + '</td>');
+      $tr.append('<td data-listid="' + list.id + '>' + '<input type="checkbox"'  + '"class="checker" value="complete">' + '</td>');
     }
     $tr.append('<td><button class="deleteBtn" data-listId="' + list.id + '">Delete</button></td>');
     $('#whatToDo').append($tr);

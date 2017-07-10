@@ -10,7 +10,10 @@ var config = {
   idleTimeoutMillis: 30000 // 30 second time out
 };
 
-var pool = new pg.Pool(config);
+// var pool = new pg.Pool(config);
+var poolModule = require('./modules/pool.js');
+var pool = poolModule;
+var port = process.env.PORT || 5000;
 // Using a router drops the part of the url used to get here
 // http://localhost:5000/books/ would '/'
 router.get('/', function(req, res){
@@ -38,7 +41,7 @@ router.get('/', function(req, res){
         }
       }); // end query
     } // end if
-  }) // end pool
+  }); // end pool
 }); // end of GET
 
 router.post('/', function(req, res) {
@@ -70,13 +73,13 @@ router.post('/', function(req, res) {
         }
       }); // end query
     } // end if
-  }) // end pool
+  }); // end pool
 });
 
 // PUT is similar to POST when using PG
 router.put('/', function(req, res){
   var list = req.body; // Book with updated content
-  console.log('Put route called with book of ', list);
+
 
   // YOUR CODE HERE
   pool.connect(function(errorConnectingToDatabase, db, done){
