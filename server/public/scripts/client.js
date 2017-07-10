@@ -37,7 +37,7 @@ $(document).ready(function(){
     var selected = $(this).data('listid');
     console.log(selected + ' id of checkbox ');
 
-    updateList(selected);
+    updateList();
     // Set the form values to the thing we're editing
     // $('#author').val(selectedBook.author);
     // $('#title').val(selectedBook.title);
@@ -70,7 +70,7 @@ function refreshList() {
 }
 
 // UPDATE a.k.a. PUT
-function updateList(list) {
+function updateList() {
 console.log(list);
 
 if(list.complete === true){
