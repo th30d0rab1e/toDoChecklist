@@ -76,7 +76,7 @@ router.post('/', function(req, res) {
 // PUT is similar to POST when using PG
 router.put('/', function(req, res){
   var list = req.body; // Book with updated content
-  console.log('Put route called with book of ', book);
+  console.log('Put route called with book of ', list);
 
   // YOUR CODE HERE
   pool.connect(function(errorConnectingToDatabase, db, done){

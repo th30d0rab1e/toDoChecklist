@@ -33,8 +33,9 @@ $(document).ready(function(){
     // We attached the entire book object as data to our table row
     // $(this).parent() is the <td>
     // $(this).parent().parent() is the <tr> that we attached our data to
-    var selected = $(this).parent().parent().data('listId');
-    console.log(selected);
+    console.log($(this));
+    var selected = $(this).data('listid');
+    console.log(selected + ' id of checkbox ');
 
     updateList(selected);
     // Set the form values to the thing we're editing
@@ -71,6 +72,7 @@ function refreshList() {
 // UPDATE a.k.a. PUT
 function updateList(list) {
 console.log(list);
+
 if(list.complete === true){
   list.complete = false;
 } else if(list.complete === false){
@@ -118,9 +120,9 @@ function appendToDom(lists) {
     $tr.append('<td>' + list.id + '</td>');
     $tr.append('<td>' + list.whattodo + '</td>');
     if(list.complete === true){
-      $tr.append('<td>' + '<input type="checkbox" data-listId"' + list.id + '"style="background-color: yellow;" class="checker" value="complete" checked>' + '</td>');
+      $tr.append('<td>' + '<input type="checkbox" data-listid"' + list.id + '"style="background-color: yellow;" class="checker" value="complete" checked>' + '</td>');
     } else {
-      $tr.append('<td>' + '<input type="checkbox"  data-listId="' + list.id + '"class="checker" value="complete">' + '</td>');
+      $tr.append('<td>' + '<input type="checkbox"  data-listid="' + list.id + '"class="checker" value="complete">' + '</td>');
     }
     $tr.append('<td><button class="deleteBtn" data-listId="' + list.id + '">Delete</button></td>');
     $('#whatToDo').append($tr);
