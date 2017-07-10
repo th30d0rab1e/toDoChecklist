@@ -33,14 +33,21 @@ $(document).ready(function(){
     // We attached the entire book object as data to our table row
     // $(this).parent() is the <td>
     // $(this).parent().parent() is the <tr> that we attached our data to
-    console.log($(this));
-    var selected = $(this).data('listid');
-    console.log(selected + ' id of checkbox ');
+    //console.log($(this));
+    var list = {};
+    list.id = $(this).data('listid');
 
-    updateList();
-    // Set the form values to the thing we're editing
-    // $('#author').val(selectedBook.author);
-    // $('#title').val(selectedBook.title);
+    console.log(list.id + ' id of checkbox ');
+    if($(this).is(':checked')){
+      list.complete = true;
+    } else {
+      list.complete = false;
+    }
+    console.log("check ", list.complete);
+     //$(selected).toggle(this.checked);
+
+    updateList(list);
+
   });
 
 
@@ -70,14 +77,8 @@ function refreshList() {
 }
 
 // UPDATE a.k.a. PUT
-function updateList() {
+function updateList(list) {
 console.log(list);
-
-if(list.complete === true){
-  list.complete = false;
-} else if(list.complete === false){
-  list.complete = true;
-}
 
   // YOUR AJAX CODE HERE
   $.ajax({
